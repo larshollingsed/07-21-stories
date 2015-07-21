@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def list
+    self.log_user_in 
     @users = User.all
   end
   
@@ -24,14 +25,44 @@ class UsersController < ApplicationController
     @user = User.find(params["user_to_delete"])
     if session["user_id"] == @user.id
       @user.delete
-      redirect "/users"
+      redirect_to "/users"
     else
-      "You can not delete this user. You must be signed in as this user."
+      @error = "You can not delete this user. You must be signed in as this user."
+      redirect_to "/users"
     end
   end
   
-  def login
+  def edit
+    if session["user_id"]
+      if session["user_id"] == params["user_to_edit"].to_i
+        @user = User.find(params["user_to_edit"])
+        render :"/users/edit"
+      else
+        @error = "You're not logged in as the correct user"
+        redirect_to "/users"
+      end
+    else
+      @error = "You're not logged in"
+      redirect_to "/users"
+    end
   end
+  
+  def edit_confirm
+    @user = User.find(params["user_to_edit"])
+    @user.name = params["user"]["name"]
+    @user.email = params["user"]["email"]
+    if params["user"]["password"] != ""
+      prepassword = params["user"]["password"]
+      password = BCrypt::Password.create(prepassword)
+      @user.password = password
+    end
+    @user.save
+    redirect_to "/users"
+  end
+  
+  # Works without users#login leads to views/users/login.html
+  # def login
+  # end
   
   def login_confirm
     user = User.find_by(email: params["email"])
@@ -41,5 +72,10 @@ class UsersController < ApplicationController
     else
       erb :"/users/login"
     end
+  end
+  
+  def logout
+    session["user_id"] = nil
+    redirect_to "/users"
   end
 end

@@ -8,14 +8,13 @@
 </head>
 <body>
   <header>
-    <!-- <% if @user_logged_in %>
+    <% if @user_logged_in %>
       You are logged in as <%= @user_logged_in.name%>
       <a href="/users/logout">Logout</a>
     <% else %>
       You are not logged in
       <a href="/users/login">Log in</a>
-    <% end %> -->
-      <%= session["user_id"]%>
+    <% end %>
   </header>
 <%= yield %>
 

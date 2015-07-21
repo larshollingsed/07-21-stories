@@ -11,6 +11,12 @@ Rails.application.routes.draw do
   get "users/login" => "users#login"
   
   post "users/login" => "users#login_confirm"
+  
+  get "/users/logout" => "users#logout"
+  
+  get "/users/edit_profile" => "users#edit"
+  
+  put "/users" => "users#edit_confirm"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
