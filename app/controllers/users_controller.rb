@@ -81,6 +81,6 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params["id"])
-    erb :"users/show"
+    render :"users/show"
   end
 end
