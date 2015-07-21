@@ -6,10 +6,10 @@
       <%= user.name %>
     </li>
     <li>
-      <form action="/users/<%= user.id %>" method="post">
-        <input type="hidden" name="_method" value="delete">
+      <%= form_tag("/users", method: "delete") do %>
+        <input type="hidden" name="user_to_delete" value="<%= user.id %>">
         <input type="submit" value = "Delete this user">
-      </form>
+      <% end %>
     </li>
     <li>
       <form action="/users/edit_profile">
