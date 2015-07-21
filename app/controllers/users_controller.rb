@@ -66,7 +66,7 @@ class UsersController < ApplicationController
   
   def login_confirm
     user = User.find_by(email: params["email"])
-    if BCrypt::Password.new(user.password) == params["password"]
+    if user != nil && BCrypt::Password.new(user.password) == params["password"]
       session["user_id"] = user.id
       redirect_to "/users"
     else
