@@ -1,0 +1,8 @@
+<%=@user.errors.full_messages%>
+
+<%= form_tag('/users', method: "post") do %>
+  <input type = "text" name = "user[email]" placeholder = "email">
+  <input type = "text" name = "user[name]" placeholder = "name">
+  <input type = "password" name = "user[password]" placeholder = "password">
+  <input type = "submit" value = "Create new user">
+<% end %>
