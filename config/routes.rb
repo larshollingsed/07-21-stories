@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   delete "/stories/:story_id" => "stories#delete"
   
   get "/stories/:story_id" => "stories#show"
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
