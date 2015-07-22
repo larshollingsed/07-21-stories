@@ -62,4 +62,9 @@ class StoriesController < ApplicationController
     end
   end
   
+  def show
+    @story = Story.find(params["story_id"])
+    render :"/stories/show"
+  end
+  
 end
