@@ -1,0 +1,5 @@
+<%= form_tag("/stories/#{@story.id}", method: "put") do %>
+  <input type="text" name="story[name]" value="<%= @story.name %>">
+  <input type="text" name="story[content]" value="<%= @story.content %>">
+  <input type="submit" value="Edit this story">
+<% end %>

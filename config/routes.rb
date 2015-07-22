@@ -21,6 +21,16 @@ Rails.application.routes.draw do
   get "/users/:id" => "users#show"
   
   get "/users/:id/stories" => "stories#index"
+  
+  get "/stories/new" => "stories#new"
+  
+  post "/users/:user_id/stories" => "stories#create"
+  
+  get "/stories/:story_id/edit" => "stories#edit"
+  
+  put "/stories/:story_id" => "stories#update"
+  
+  delete "/stories/:story_id" => "stories#delete"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

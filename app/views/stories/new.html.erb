@@ -1,0 +1,7 @@
+Add a story for <%= @user.name %>
+
+<%= form_tag("/users/#{@user.id}/stories") do %>
+  <input type="text" name="story[name]" placeholder="name">
+  <input type="text" name="story[content]" placeholder="content">
+  <input type="submit" value="Add this story">
+<% end %>
