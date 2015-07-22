@@ -1,6 +1,6 @@
 <% @stories.each do |story| %>
   <p>
-    Name of Story - <%= story.name %>
+    <a href="/stories/<%= story.id %>"><%= story.name %></a>
   </p>
   <p>
     <form action="/stories/<%= story.id %>/edit">
@@ -13,8 +13,5 @@
     <input type="hidden" name="user_to_delete_story_of" value="<%= @user.id %>">
     <input type="submit" value="Delete this story?">
     <% end %>
-  </p>
-  <p>
-    <a href="/stories/<%= story.id %>">View this story</a>
   </p>
 <% end %>
