@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
   
   def new
+    self.log_user_in 
     @user = User.new
   end
   
@@ -33,6 +34,7 @@ class UsersController < ApplicationController
   end
   
   def edit
+    self.log_user_in 
     if session["user_id"]
       if session["user_id"] == params["user_to_edit"].to_i
         @user = User.find(params["user_to_edit"])
@@ -80,6 +82,7 @@ class UsersController < ApplicationController
   end
   
   def show
+    self.log_user_in 
     @user = User.find(params["id"])
     render :"users/show"
   end
