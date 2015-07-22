@@ -50,4 +50,16 @@ class StoriesController < ApplicationController
     @story.save
     redirect_to "/users"
   end
+  
+  def delete
+    @story = Story.find(params["story_id"])
+    if session["user_id"] == params["user_to_delete_story_of"].to_i
+      @story.delete
+      redirect_to "/users"
+    else
+      @error = "You must be signed in to do that."
+      redirect_to "/users"
+    end
+  end
+  
 end
